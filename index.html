@@ -1,0 +1,2763 @@
+<!DOCTYPE html>
+<html lang="tk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Erteki 🛍️</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:#faf8f1;
+ color:#292929
+}
+
+header{
+ padding:20px 12px;
+ text-align:center;
+ background:linear-gradient(135deg,#fff,#fff4c9,#fff);
+ border-bottom:2px solid #d4af37;
+ box-shadow:0 5px 25px #c9a22730
+}
+
+.logo{
+ font-size:36px;
+ font-weight:bold;
+ background:linear-gradient(90deg,#765300,#d4af37,#fff0a0,#d4af37,#765300);
+ -webkit-background-clip:text;
+ color:transparent
+}
+
+.subtitle{
+ color:#777;
+ margin-top:5px;
+ font-size:13px
+}
+
+.top{
+ display:flex;
+ justify-content:center;
+ gap:8px;
+ margin-top:14px
+}
+
+.top button{
+ padding:10px 13px;
+ border:1px solid #c9a227;
+ border-radius:25px;
+ background:#fff8dc;
+ color:#765700;
+ font-weight:bold
+}
+
+.lang{
+ margin-top:10px
+}
+
+.lang button{
+ padding:7px 10px;
+ border:1px solid #d4af37;
+ border-radius:9px;
+ background:#fff6d4;
+ color:#765700;
+ margin:2px;
+ font-size:11px
+}
+
+.lang button.active{
+ background:#d4af37;
+ color:#fff
+}
+
+.search{
+ padding:15px 10px
+}
+
+.search input,
+.admin input,
+.admin select{
+ width:100%;
+ padding:12px;
+ border:1px solid #d4af37;
+ border-radius:12px;
+ background:white;
+ font-size:14px;
+ margin:5px 0
+}
+
+.field-error{
+ display:none;
+ color:#c0392b;
+ font-size:11px;
+ font-weight:bold;
+ margin:-2px 0 6px 4px
+}
+
+.field-error.show{
+ display:block
+}
+
+input.invalid{
+ border-color:#c0392b;
+ background:#fff5f5
+}
+
+input.valid{
+ border-color:#3a9d4a
+}
+
+.title{
+ padding:8px 12px;
+ color:#806000;
+ font-size:19px;
+ font-weight:bold
+}
+
+.line{
+ width:40px;
+ height:3px;
+ margin-top:5px;
+ background:#d4af37;
+ border-radius:5px
+}
+
+.categories{
+ display:flex;
+ gap:8px;
+ padding:0 10px 18px;
+ overflow-x:auto
+}
+
+.category{
+ min-width:110px;
+ padding:12px 7px;
+ text-align:center;
+ border:1px solid #d4af37;
+ border-radius:16px;
+ background:linear-gradient(145deg,#fff,#fff5d4);
+ color:#765700;
+ font-weight:bold;
+ font-size:12px
+}
+
+.category span{
+ display:block;
+ font-size:25px;
+ margin-bottom:5px
+}
+
+.products{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:8px;
+ padding:0 10px 20px
+}
+
+.product{
+ background:white;
+ padding:8px;
+ border-radius:12px;
+ border:1px solid #ead9a0;
+ box-shadow:0 3px 10px #0000000d;
+ overflow:hidden
+}
+
+.product img{
+ width:90px;
+ height:90px;
+ object-fit:contain;
+ border-radius:10px;
+ display:block;
+ margin:0 auto;
+ background:#fff
+}
+
+.no-image{
+ width:90px;
+ height:90px;
+ margin:0 auto;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ border-radius:10px;
+ background:#fff8dc;
+ font-size:35px
+}
+
+.product h3{
+ margin:6px 0 3px;
+ font-size:13px;
+ line-height:1.2
+}
+
+.product p{
+ color:#777;
+ font-size:10px;
+ margin:3px 0;
+ line-height:1.3
+}
+
+.price{
+ color:#b8860b;
+ font-size:14px;
+ font-weight:bold
+}
+
+.gold{
+ width:100%;
+ padding:8px 3px;
+ margin-top:6px;
+ border:0;
+ border-radius:9px;
+ background:linear-gradient(110deg,#765300,#c9a227,#ffe68a,#c9a227,#765300);
+ color:white;
+ font-size:10px;
+ font-weight:bold
+}
+
+.gold:disabled{
+ opacity:.8
+}
+
+.page{
+ display:none;
+ padding:15px 10px
+}
+
+.cart-item,
+.admin-box,
+.admin-product,
+.order{
+ background:white;
+ padding:14px;
+ margin-bottom:12px;
+ border:1px solid #ead9a0;
+ border-radius:16px;
+ box-shadow:0 4px 15px #0000000a
+}
+
+.qty{
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ gap:12px;
+ margin-top:10px
+}
+
+.qty button{
+ width:36px;
+ height:36px;
+ border:1px solid #d4af37;
+ border-radius:9px;
+ background:#fff5ce;
+ font-size:19px
+}
+
+.qty span{
+ min-width:25px;
+ text-align:center;
+ font-weight:bold
+}
+
+.remove{
+ width:100%;
+ padding:9px;
+ margin-top:9px;
+ border:0;
+ border-radius:9px;
+ background:#fff0f0;
+ color:#a33
+}
+
+.total{
+ padding:15px;
+ border-radius:14px;
+ background:#fff3c4;
+ border:1px solid #d4af37;
+ font-size:18px;
+ font-weight:bold;
+ color:#765700;
+ margin-bottom:10px
+}
+
+.back{
+ width:100%;
+ padding:11px;
+ margin-top:8px;
+ border:1px solid #d4af37;
+ border-radius:12px;
+ background:white;
+ color:#765700;
+ font-weight:bold
+}
+
+.admin{
+ display:none;
+ padding:15px 10px
+}
+
+.admin-product img{
+ width:90px;
+ height:90px;
+ object-fit:contain;
+ display:block;
+ margin:auto;
+ border-radius:12px
+}
+
+.small{
+ padding:8px 10px;
+ border:1px solid #d4af37;
+ border-radius:9px;
+ background:#fff6d4;
+ color:#765700;
+ margin-top:5px;
+ font-size:11px
+}
+
+.empty{
+ text-align:center;
+ padding:35px 15px;
+ background:white;
+ border:1px solid #ead9a0;
+ border-radius:16px;
+ color:#888
+}
+
+.status{
+ margin-top:10px;
+ padding:9px;
+ border-radius:9px;
+ background:#fff3c4;
+ color:#765700;
+ font-weight:bold;
+ text-align:center;
+ font-size:13px
+}
+
+/* --- order status badges --- */
+
+.status-badge{
+ display:inline-block;
+ padding:6px 12px;
+ border-radius:20px;
+ font-size:12px;
+ font-weight:bold;
+ margin:6px 0
+}
+
+.status-accepted{background:#fff3c4;color:#8a6d00}
+.status-onway{background:#dceeff;color:#0b5aa3}
+.status-delivered{background:#dcf5e0;color:#1e7d34}
+.status-cancelled{background:#ffe0e0;color:#a33}
+
+.status-buttons{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:6px;
+ margin-top:10px
+}
+
+.status-btn{
+ padding:9px 4px;
+ border:1px solid #d4af37;
+ border-radius:9px;
+ background:#fff;
+ color:#555;
+ font-size:11px;
+ font-weight:bold
+}
+
+.status-btn.current{
+ border:2px solid #765700;
+ background:#fff3c4;
+ color:#765700
+}
+
+/* --- toast notifications --- */
+
+#toastBox{
+ position:fixed;
+ top:14px;
+ left:50%;
+ transform:translateX(-50%);
+ z-index:999;
+ display:flex;
+ flex-direction:column;
+ gap:8px;
+ width:92%;
+ max-width:360px;
+ pointer-events:none
+}
+
+.toast{
+ display:flex;
+ align-items:center;
+ gap:8px;
+ padding:12px 14px;
+ border-radius:12px;
+ font-size:13px;
+ font-weight:bold;
+ color:#fff;
+ box-shadow:0 6px 20px #0000002a;
+ opacity:0;
+ transform:translateY(-12px);
+ transition:all .25s ease
+}
+
+.toast.show{
+ opacity:1;
+ transform:translateY(0)
+}
+
+.toast.success{background:linear-gradient(120deg,#2e9e4f,#3fbf67)}
+.toast.error{background:linear-gradient(120deg,#c0392b,#e0564a)}
+
+.toast .icon{
+ font-size:17px
+}
+
+/* --- confirm modal --- */
+
+#confirmOverlay{
+ display:none;
+ position:fixed;
+ inset:0;
+ background:#00000060;
+ z-index:998;
+ align-items:center;
+ justify-content:center
+}
+
+#confirmOverlay.show{
+ display:flex
+}
+
+.confirm-box{
+ background:#fff;
+ width:85%;
+ max-width:320px;
+ border-radius:16px;
+ padding:20px;
+ text-align:center;
+ box-shadow:0 10px 40px #00000040
+}
+
+.confirm-box p{
+ font-size:14px;
+ color:#333;
+ margin:0 0 16px
+}
+
+.confirm-actions{
+ display:flex;
+ gap:10px
+}
+
+.confirm-actions button{
+ flex:1;
+ padding:11px 4px;
+ border:0;
+ border-radius:10px;
+ font-weight:bold;
+ font-size:14px
+}
+
+.confirm-yes{
+ background:linear-gradient(110deg,#2e9e4f,#3fbf67);
+ color:#fff
+}
+
+.confirm-no{
+ background:#f1f1f1;
+ color:#555
+}
+
+/* --- new order banner --- */
+
+#newOrderBanner{
+ display:none;
+ position:fixed;
+ top:0;
+ left:0;
+ right:0;
+ z-index:1000;
+ padding:16px 14px;
+ background:linear-gradient(110deg,#765300,#c9a227,#ffe68a,#c9a227,#765300);
+ background-size:200% 100%;
+ color:#fff;
+ text-align:center;
+ box-shadow:0 6px 20px #00000040;
+ animation:bannerGlow 1.4s ease-in-out infinite
+}
+
+#newOrderBanner.show{
+ display:block
+}
+
+#newOrderBanner .bell{
+ font-size:22px;
+ display:inline-block;
+ animation:bellRing .5s ease-in-out infinite
+}
+
+#newOrderBanner .headline{
+ font-size:16px;
+ font-weight:bold;
+ margin-top:4px
+}
+
+#newOrderBanner .detail{
+ font-size:12px;
+ margin-top:3px;
+ opacity:.95
+}
+
+@keyframes bannerGlow{
+ 0%{background-position:0% 50%}
+ 50%{background-position:100% 50%}
+ 100%{background-position:0% 50%}
+}
+
+@keyframes bellRing{
+ 0%,100%{transform:rotate(0)}
+ 25%{transform:rotate(-15deg)}
+ 75%{transform:rotate(15deg)}
+}
+
+.admin-badge{
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ min-width:17px;
+ height:17px;
+ padding:0 4px;
+ margin-left:4px;
+ border-radius:10px;
+ background:#e0362b;
+ color:#fff;
+ font-size:10px;
+ font-weight:bold;
+ vertical-align:top
+}
+</style>
+</head>
+
+<body>
+
+<div id="toastBox"></div>
+
+<div id="newOrderBanner" onclick="dismissBannerAndOpenAdmin()">
+<div class="bell">🔔</div>
+<div class="headline" id="newOrderHeadline">New order received!</div>
+<div class="detail" id="newOrderDetail"></div>
+</div>
+
+<div id="confirmOverlay">
+<div class="confirm-box">
+<p id="confirmText"></p>
+<div class="confirm-actions">
+<button class="confirm-yes" id="confirmYesBtn">✓ Hawa</button>
+<button class="confirm-no" id="confirmNoBtn">✕ Ýok</button>
+</div>
+</div>
+</div>
+
+<div id="home">
+
+<header>
+
+<div class="logo">Erteki ✨</div>
+
+<div class="subtitle" id="subtitle">
+Türkmenistan üçin onlaýn söwda
+</div>
+
+<div class="top">
+
+<button onclick="openCart()">
+🛒 <span id="cartText">Sebet</span>
+<span id="count">0</span>
+</button>
+
+<button onclick="openAdmin()">
+🔐 <span id="adminBtnText">Admin</span><span class="admin-badge" id="adminBadge" style="display:none">0</span>
+</button>
+
+</div>
+
+<div class="lang">
+
+<button id="langTkBtn" onclick="setLanguage('tk')">
+🇹🇲 TKM
+</button>
+
+<button id="langRuBtn" onclick="setLanguage('ru')">
+🇷🇺 РУС
+</button>
+
+</div>
+
+</header>
+
+<div class="search">
+
+<input
+id="search"
+placeholder="🔍 Haryt gözle..."
+oninput="searchProducts()">
+
+</div>
+
+<div class="title" id="categoriesTitle">
+Kategoriýalar
+<div class="line"></div>
+</div>
+
+<div id="categories" class="categories"></div>
+
+<div class="title" id="popularTitle">
+Meşhur harytlar
+<div class="line"></div>
+</div>
+
+<div id="products" class="products"></div>
+
+</div>
+
+
+<div id="categoryPage" class="page">
+
+<div class="title">
+<span id="categoryName"></span>
+<div class="line"></div>
+</div>
+
+<div id="categoryProducts" class="products"></div>
+
+<button class="back" onclick="homePage()">
+← <span data-tk="Yza" data-ru="Назад">Yza</span>
+</button>
+
+</div>
+
+
+<div id="cartPage" class="page">
+
+<div class="title">
+🛒 <span data-tk="Sebet" data-ru="Корзина">Sebet</span>
+<div class="line"></div>
+</div>
+
+<div id="cartItems"></div>
+
+<div class="total">
+<span data-tk="Jemi:" data-ru="Итого:">Jemi:</span>
+<span id="total">0</span> TMT
+</div>
+
+<button class="gold" onclick="openOrder()">
+📦 <span data-tk="Sargyt et" data-ru="Оформить заказ">
+Sargyt et
+</span>
+</button>
+
+<button class="back" onclick="homePage()">
+← <span data-tk="Yza" data-ru="Назад">Yza</span>
+</button>
+
+</div>
+
+
+<div id="orderPage" class="page">
+
+<div class="title">
+📦
+<span data-tk="Sargyt maglumatlary" data-ru="Данные заказа">
+Sargyt maglumatlary
+</span>
+
+<div class="line"></div>
+</div>
+
+<div class="admin-box">
+
+<input
+id="customerName"
+data-placeholder-tk="Adyňyz"
+data-placeholder-ru="Ваше имя"
+placeholder="Adyňyz"
+oninput="validateName(true)">
+<div class="field-error" id="nameError"></div>
+
+<input
+id="customerPhone"
+data-placeholder-tk="Telefon belgiňiz (+993XXXXXXXX)"
+data-placeholder-ru="Ваш телефон (+993XXXXXXXX)"
+placeholder="Telefon belgiňiz"
+oninput="validatePhone(true)">
+<div class="field-error" id="phoneError"></div>
+
+<input
+id="customerAddress"
+data-placeholder-tk="Salgyňyz"
+data-placeholder-ru="Ваш адрес"
+placeholder="Salgyňyz"
+oninput="validateAddress(true)">
+<div class="field-error" id="addressError"></div>
+
+<button class="gold" onclick="sendOrder()">
+✅
+<span data-tk="Sargydy tassykla" data-ru="Подтвердить заказ">
+Sargydy tassykla
+</span>
+</button>
+
+</div>
+
+<button class="back" onclick="openCart()">
+←
+<span data-tk="Sebede dolan" data-ru="Вернуться в корзину">
+Sebede dolan
+</span>
+</button>
+
+</div>
+
+
+<div id="adminPage" class="admin">
+
+<div class="title">
+🔐 <span id="adminTitleText">Admin</span>
+<div class="line"></div>
+</div>
+
+<div class="admin-box">
+
+<h3 id="addCategoryHeader">📂 Kategoriýa goş</h3>
+
+<input
+id="catName"
+placeholder="Kategoriýanyň ady / Название">
+
+<input
+id="catIcon"
+placeholder="Emoji mysal: 🎁">
+
+<button class="gold" onclick="addCategory()">
+➕ <span id="addCategoryBtnText">Kategoriýa goş</span>
+</button>
+
+</div>
+
+<div id="adminCategories"></div>
+
+
+<div class="admin-box">
+
+<h3 id="addProductHeader">➕ Haryt goş</h3>
+
+<input
+id="pName"
+placeholder="Harydyň ady (Türkmençe) / Название товара (туркм.)">
+
+<input
+id="pNameRu"
+placeholder="Rusça ady / Название на русском">
+
+<input
+id="pPrice"
+type="number"
+placeholder="Bahasy / Цена">
+
+<input
+id="pDescription"
+placeholder="Türkmençe düşündiriş">
+
+<input
+id="pDescriptionRu"
+placeholder="Rusça düşündiriş">
+
+<select id="pCategory"></select>
+
+<input
+id="pImage"
+type="file"
+accept="image/*"
+onchange="readImage(event)">
+
+<img
+id="preview"
+style="display:none;width:90px;height:90px;object-fit:contain;border-radius:12px;margin:8px auto">
+
+<button class="gold" onclick="addProduct()">
+✨ <span id="addProductBtnText">Haryt goş</span>
+</button>
+
+</div>
+
+
+<div class="title">
+📦 <span id="productsTitleText">Harytlar</span>
+<div class="line"></div>
+</div>
+
+<div id="adminProducts"></div>
+
+
+<div class="title">
+📋 <span id="ordersTitleText">Gelen sargytlar</span>
+<div class="line"></div>
+</div>
+
+<div id="orders"></div>
+
+<button class="back" onclick="homePage()">
+← <span id="backHomeText">Esasy sahypa</span>
+</button>
+
+</div>
+
+
+<script>
+
+/* ================= TRANSLATIONS ================= */
+
+const T={
+
+subtitle:{tk:"Türkmenistan üçin onlaýn söwda",ru:"Онлайн-магазин для Туркменистана"},
+searchPh:{tk:"🔍 Haryt gözle...",ru:"🔍 Поиск товара..."},
+categoriesTitle:{tk:"Kategoriýalar",ru:"Категории"},
+popularTitle:{tk:"Meşhur harytlar",ru:"Популярные товары"},
+cartText:{tk:"Sebet",ru:"Корзина"},
+adminBtn:{tk:"Admin",ru:"Админ"},
+adminTitle:{tk:"Admin",ru:"Админ-панель"},
+
+addCategoryHeader:{tk:"📂 Kategoriýa goş",ru:"📂 Добавить категорию"},
+addCategoryBtn:{tk:"Kategoriýa goş",ru:"Добавить категорию"},
+addProductHeader:{tk:"➕ Haryt goş",ru:"➕ Добавить товар"},
+addProductBtn:{tk:"Haryt goş",ru:"Добавить товар"},
+productsTitle:{tk:"Harytlar",ru:"Товары"},
+ordersTitle:{tk:"Gelen sargytlar",ru:"Поступившие заказы"},
+backHome:{tk:"Esasy sahypa",ru:"Главная страница"},
+
+addToCart:{tk:"🛒 Sebede goş",ru:"🛒 Добавить в корзину"},
+addedToCart:{tk:"✅ Sebede goşuldy",ru:"✅ Добавлено в корзину"},
+noProductsInCategory:{tk:"Bu kategoriýada haryt ýok.",ru:"В этой категории пока нет товаров."},
+cartEmpty:{tk:"🛒<br><br>Sebet boş.",ru:"🛒<br><br>Корзина пуста."},
+remove:{tk:"Aýyr",ru:"Удалить"},
+edit:{tk:"Üýtget",ru:"Изменить"},
+
+cartEmptyAlert:{tk:"Sebet boş 🛒",ru:"Корзина пуста 🛒"},
+fillAllFields:{tk:"Ähli maglumatlary dogry dolduryň.",ru:"Заполните все поля корректно."},
+orderSuccess:{tk:"Sargydyňyz üstünlikli kabul edildi!",ru:"Ваш заказ успешно принят!"},
+orderCancelledToast:{tk:"Amal ýatyryldy",ru:"Действие отменено"},
+
+catNameRequired:{tk:"Kategoriýanyň adyny ýazyň.",ru:"Введите название категории."},
+categoryAdded:{tk:"Kategoriýa goşuldy",ru:"Категория добавлена"},
+categoryUpdated:{tk:"Kategoriýa üýtgedildi",ru:"Категория обновлена"},
+categoryDeleted:{tk:"Kategoriýa aýryldy",ru:"Категория удалена"},
+categoryInUse:{tk:"Bu kategoriýada haryt bar. Ilki harydy aýryň ýa-da başga kategoriýa geçiriň.",ru:"В этой категории есть товары. Сначала удалите товар или перенесите его."},
+confirmDeleteCategory:{tk:"Kategoriýany aýyrmalymy?",ru:"Удалить категорию?"},
+
+productAdded:{tk:"Haryt goşuldy",ru:"Товар добавлен"},
+productUpdated:{tk:"Haryt üýtgedildi",ru:"Товар обновлён"},
+productDeleted:{tk:"Haryt aýryldy",ru:"Товар удалён"},
+confirmDeleteProduct:{tk:"Harydy aýyrmalymy?",ru:"Удалить товар?"},
+productFieldsRequired:{tk:"Ähli meýdanlary dogry dolduryň.",ru:"Заполните все поля корректно."},
+
+noOrdersYet:{tk:"Häzirlikçe sargyt ýok.",ru:"Пока нет заказов."},
+orderNumber:{tk:"Sargyt",ru:"Заказ"},
+customerLabel:{tk:"Müşderi",ru:"Клиент"},
+phoneLabel:{tk:"Telefon",ru:"Телефон"},
+addressLabel:{tk:"Salgy",ru:"Адрес"},
+itemsLabel:{tk:"Harytlar",ru:"Товары"},
+totalLabel:{tk:"Jemi",ru:"Итого"},
+dateLabel:{tk:"Wagt",ru:"Дата"},
+statusChanged:{tk:"Sargydyň ýagdaýy üýtgedildi",ru:"Статус заказа обновлён"},
+
+statusAccepted:{tk:"✅ Sargyt kabul edildi",ru:"✅ Заказ принят"},
+statusOnWay:{tk:"🚚 Ýolda",ru:"🚚 В пути"},
+statusDelivered:{tk:"📦 Gowşuryldy",ru:"📦 Доставлен"},
+statusCancelled:{tk:"❌ Ýatyryldy",ru:"❌ Отменён"},
+
+nameTooShort:{tk:"✕ Ady azyndan 3 harp bolmaly",ru:"✕ Имя должно содержать не менее 3 букв"},
+phoneInvalid:{tk:"✕ Telefon +993 bilen başlap, soňra 8 san bolmaly",ru:"✕ Телефон должен начинаться с +993 и содержать 8 цифр"},
+addressEmpty:{tk:"✕ Salgyňyzy ýazyň",ru:"✕ Укажите адрес"},
+
+confirmYes:{tk:"✓ Hawa",ru:"✓ Да"},
+confirmNo:{tk:"✕ Ýok",ru:"✕ Отмена"},
+
+newOrderHeadline:{tk:"🔔 Täze sargyt geldi!",ru:"🔔 Поступил новый заказ!"},
+newOrderDetail:{tk:"bilen, jemi",ru:"на сумму"}
+
+};
+
+
+function t(key){
+
+return T[key]
+?
+T[key][currentLanguage]
+:
+key;
+
+}
+
+
+/* ================= DATA ================= */
+
+let categories =
+JSON.parse(localStorage.getItem("categories")) || [
+
+{
+id:"gift",
+name:"Sowgatlar",
+nameRu:"Подарки",
+icon:"🎁"
+},
+
+{
+id:"beauty",
+name:"Gözellik we saç",
+nameRu:"Красота и волосы",
+icon:"💇‍♀️"
+},
+
+{
+id:"home",
+name:"Öý üçin harytlar",
+nameRu:"Товары для дома",
+icon:"🏠"
+}
+
+];
+
+
+let products =
+JSON.parse(localStorage.getItem("products")) || [
+
+{
+id:1,
+name:"Teddy Mişka 30sm",
+nameRu:"Мишка Тедди 30см",
+price:110,
+description:"Sowgat üçin owadan mişka 🧸",
+descriptionRu:"Красивая игрушка для подарка 🧸",
+category:"gift",
+image:""
+},
+
+{
+id:2,
+name:"Owadan Suwenir",
+nameRu:"Красивый сувенир",
+price:65,
+description:"Ajaýyp sowgatlyk suwenir ✨",
+descriptionRu:"Красивый сувенир для подарка ✨",
+category:"gift",
+image:""
+},
+
+{
+id:3,
+name:"Gije çyrasy Aý",
+nameRu:"Ночник Луна",
+price:90,
+description:"Owadan aý şekilli gije çyrasy 🌙",
+descriptionRu:"Красивая лунная лампа 🌙",
+category:"gift",
+image:""
+},
+
+{
+id:4,
+name:"Saç üçin styler",
+nameRu:"Стайлер для волос",
+price:250,
+description:"Saç üçin amatly tehnikalar",
+descriptionRu:"Удобный стайлер для волос",
+category:"beauty",
+image:""
+},
+
+{
+id:5,
+name:"Fen-darak",
+nameRu:"Фен-расчёска",
+price:180,
+description:"Saç düzmek üçin amatly",
+descriptionRu:"Удобный фен-расчёска",
+category:"beauty",
+image:""
+},
+
+{
+id:6,
+name:"Termos",
+nameRu:"Термос",
+price:150,
+description:"Gündelik ulanmak üçin termos",
+descriptionRu:"Термос для ежедневного использования",
+category:"home",
+image:""
+}
+
+];
+
+
+let orders =
+JSON.parse(localStorage.getItem("orders")) || [];
+
+orders.forEach(o=>{
+
+if(typeof o.seen==="undefined"){
+
+o.seen=true;
+
+}
+
+});
+
+let cart=[];
+let imageData="";
+let editingProductId=null;
+
+let currentLanguage =
+localStorage.getItem("language") || "tk";
+
+const ORDER_STATUSES=["accepted","onway","delivered","cancelled"];
+
+
+function save(){
+
+localStorage.setItem(
+"categories",
+JSON.stringify(categories)
+);
+
+localStorage.setItem(
+"products",
+JSON.stringify(products)
+);
+
+localStorage.setItem(
+"orders",
+JSON.stringify(orders)
+);
+
+}
+
+
+/* ================= LANGUAGE ================= */
+
+function setLanguage(lang){
+
+currentLanguage=lang;
+
+localStorage.setItem(
+"language",
+lang
+);
+
+updateLanguage();
+
+renderCategories();
+renderProducts();
+renderAdminCategories();
+renderAdminProducts();
+renderSelect();
+renderOrders();
+
+}
+
+
+function updateLanguage(){
+
+document.getElementById("langTkBtn").classList.toggle("active",currentLanguage==="tk");
+document.getElementById("langRuBtn").classList.toggle("active",currentLanguage==="ru");
+
+document.getElementById("subtitle").innerText=t("subtitle");
+document.getElementById("search").placeholder=t("searchPh");
+document.getElementById("categoriesTitle").childNodes[0].textContent=t("categoriesTitle");
+document.getElementById("popularTitle").childNodes[0].textContent=t("popularTitle");
+document.getElementById("cartText").innerText=t("cartText");
+document.getElementById("adminBtnText").innerText=t("adminBtn");
+document.getElementById("adminTitleText").innerText=t("adminTitle");
+
+document.getElementById("addCategoryHeader").innerText=t("addCategoryHeader");
+document.getElementById("addCategoryBtnText").innerText=t("addCategoryBtn");
+document.getElementById("addProductHeader").innerText=t("addProductHeader");
+document.getElementById("addProductBtnText").innerText=t("addProductBtn");
+document.getElementById("productsTitleText").innerText=t("productsTitle");
+document.getElementById("ordersTitleText").innerText=t("ordersTitle");
+document.getElementById("backHomeText").innerText=t("backHome");
+
+document.getElementById("confirmYesBtn").innerText=t("confirmYes");
+document.getElementById("confirmNoBtn").innerText=t("confirmNo");
+
+
+document.querySelectorAll("[data-tk]").forEach(el=>{
+
+el.innerText =
+currentLanguage==="tk"
+?
+el.dataset.tk
+:
+el.dataset.ru;
+
+});
+
+
+document.querySelectorAll("[data-placeholder-tk]").forEach(el=>{
+
+el.placeholder =
+currentLanguage==="tk"
+?
+el.dataset.placeholderTk
+:
+el.dataset.placeholderRu;
+
+});
+
+}
+
+
+/* ================= NAVIGATION ================= */
+
+function hideAll(){
+
+document.getElementById("home").style.display="none";
+document.getElementById("categoryPage").style.display="none";
+document.getElementById("cartPage").style.display="none";
+document.getElementById("orderPage").style.display="none";
+document.getElementById("adminPage").style.display="none";
+
+}
+
+
+function homePage(){
+
+hideAll();
+
+document.getElementById("home").style.display="block";
+
+renderCategories();
+renderProducts();
+
+updateLanguage();
+
+}
+
+
+/* ================= CATEGORIES / PRODUCTS (storefront) ================= */
+
+function renderCategories(){
+
+let box=document.getElementById("categories");
+
+box.innerHTML="";
+
+categories.forEach(c=>{
+
+let name =
+currentLanguage==="tk"
+?
+c.name
+:
+(c.nameRu || c.name);
+
+box.innerHTML+=`
+
+<div class="category"
+onclick="openCategory('${c.id}')">
+
+<span>${c.icon}</span>
+
+${name}
+
+</div>
+
+`;
+
+});
+
+}
+
+
+function renderProducts(){
+
+let box=document.getElementById("products");
+
+box.innerHTML="";
+
+products.forEach(p=>{
+
+box.innerHTML+=productHTML(p);
+
+});
+
+}
+
+
+function productHTML(p){
+
+let name =
+currentLanguage==="tk"
+?
+p.name
+:
+(p.nameRu || p.name);
+
+let description =
+currentLanguage==="tk"
+?
+p.description
+:
+(p.descriptionRu || p.description);
+
+
+let image=p.image
+?
+`<img src="${p.image}">`
+:
+`<div class="no-image">🛍️</div>`;
+
+
+return `
+
+<div class="product">
+
+${image}
+
+<h3>${name}</h3>
+
+<p>${description}</p>
+
+<div class="price">
+${p.price} TMT
+</div>
+
+<button
+class="gold"
+onclick="addCart(${p.id})">
+
+${t("addToCart")}
+
+</button>
+
+</div>
+
+`;
+
+}
+
+
+function openCategory(id){
+
+hideAll();
+
+document.getElementById("categoryPage").style.display="block";
+
+let c=categories.find(x=>x.id===id);
+
+let categoryName =
+currentLanguage==="tk"
+?
+c.name
+:
+(c.nameRu || c.name);
+
+document.getElementById("categoryName").innerText =
+c.icon+" "+categoryName;
+
+let box=document.getElementById("categoryProducts");
+
+box.innerHTML="";
+
+let list=products.filter(
+p=>p.category===id
+);
+
+if(!list.length){
+
+box.innerHTML=`<div class="empty">${t("noProductsInCategory")}</div>`;
+
+return;
+
+}
+
+list.forEach(p=>{
+
+box.innerHTML+=productHTML(p);
+
+});
+
+}
+
+
+function searchProducts(){
+
+let text =
+document.getElementById("search")
+.value
+.toLowerCase();
+
+let box=document.getElementById("products");
+
+box.innerHTML="";
+
+products.forEach(p=>{
+
+let name1=(p.name||"").toLowerCase();
+let name2=(p.nameRu||"").toLowerCase();
+
+if(
+name1.includes(text) ||
+name2.includes(text)
+){
+
+box.innerHTML+=productHTML(p);
+
+}
+
+});
+
+}
+
+
+/* ================= CART ================= */
+
+function addCart(id){
+
+let p=products.find(x=>x.id===id);
+
+if(!p)return;
+
+let item=cart.find(x=>x.id===id);
+
+if(item){
+
+item.qty++;
+
+}else{
+
+cart.push({
+
+id:p.id,
+name:p.name,
+nameRu:p.nameRu,
+price:p.price,
+qty:1
+
+});
+
+}
+
+
+updateCount();
+
+
+if(navigator.vibrate){
+
+navigator.vibrate([100,50,100]);
+
+}
+
+
+let buttons=document.querySelectorAll(
+`.product button[onclick="addCart(${id})"]`
+);
+
+
+buttons.forEach(button=>{
+
+let oldText=button.innerHTML;
+
+button.innerHTML=t("addedToCart");
+
+button.disabled=true;
+
+setTimeout(()=>{
+
+button.innerHTML=oldText;
+
+button.disabled=false;
+
+},1500);
+
+});
+
+}
+
+
+function updateCount(){
+
+let n=0;
+
+cart.forEach(x=>{
+
+n+=x.qty;
+
+});
+
+document.getElementById("count").innerText=n;
+
+}
+
+
+function openCart(){
+
+hideAll();
+
+document.getElementById("cartPage").style.display="block";
+
+renderCart();
+
+}
+
+
+function renderCart(){
+
+let box=document.getElementById("cartItems");
+
+box.innerHTML="";
+
+let total=0;
+
+if(!cart.length){
+
+box.innerHTML=`<div class="empty">${t("cartEmpty")}</div>`;
+
+}
+
+cart.forEach((x,i)=>{
+
+let sum=x.price*x.qty;
+
+total+=sum;
+
+let name =
+currentLanguage==="tk"
+?
+x.name
+:
+(x.nameRu || x.name);
+
+
+box.innerHTML+=`
+
+<div class="cart-item">
+
+<h3>${name}</h3>
+
+<p>${x.price} TMT × ${x.qty}</p>
+
+<strong>${sum} TMT</strong>
+
+<div class="qty">
+
+<button onclick="changeQty(${i},-1)">
+−
+</button>
+
+<span>${x.qty}</span>
+
+<button onclick="changeQty(${i},1)">
++
+</button>
+
+</div>
+
+<button
+class="remove"
+onclick="removeCart(${i})">
+
+🗑️ ${t("remove")}
+
+</button>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("total").innerText=total;
+
+}
+
+
+function changeQty(i,n){
+
+cart[i].qty+=n;
+
+if(cart[i].qty<=0){
+
+cart.splice(i,1);
+
+}
+
+updateCount();
+
+renderCart();
+
+}
+
+
+function removeCart(i){
+
+cart.splice(i,1);
+
+updateCount();
+
+renderCart();
+
+showToast("success",t("orderCancelledToast"));
+
+}
+
+
+/* ================= VALIDATION ================= */
+
+function countLetters(str){
+
+let matches=str.match(/\p{L}/gu);
+
+return matches ? matches.length : 0;
+
+}
+
+
+function validateName(live){
+
+let el=document.getElementById("customerName");
+let err=document.getElementById("nameError");
+
+let value=el.value.trim();
+
+let ok=countLetters(value)>=3;
+
+if(!ok){
+
+err.innerText=t("nameTooShort");
+
+if(live && value.length===0){
+
+err.classList.remove("show");
+el.classList.remove("invalid","valid");
+
+}else{
+
+err.classList.add("show");
+el.classList.add("invalid");
+el.classList.remove("valid");
+
+}
+
+}else{
+
+err.classList.remove("show");
+el.classList.remove("invalid");
+el.classList.add("valid");
+
+}
+
+return ok;
+
+}
+
+
+function validatePhone(live){
+
+let el=document.getElementById("customerPhone");
+let err=document.getElementById("phoneError");
+
+let raw=el.value.trim();
+
+let cleaned=raw.replace(/[\s-()]/g,"");
+
+let ok=/^\+993\d{8}$/.test(cleaned);
+
+if(!ok){
+
+err.innerText=t("phoneInvalid");
+
+if(live && raw.length===0){
+
+err.classList.remove("show");
+el.classList.remove("invalid","valid");
+
+}else{
+
+err.classList.add("show");
+el.classList.add("invalid");
+el.classList.remove("valid");
+
+}
+
+}else{
+
+err.classList.remove("show");
+el.classList.remove("invalid");
+el.classList.add("valid");
+
+}
+
+return ok;
+
+}
+
+
+function validateAddress(live){
+
+let el=document.getElementById("customerAddress");
+let err=document.getElementById("addressError");
+
+let value=el.value.trim();
+
+let ok=value.length>0;
+
+if(!ok){
+
+err.innerText=t("addressEmpty");
+
+if(live){
+
+err.classList.remove("show");
+el.classList.remove("invalid","valid");
+
+}else{
+
+err.classList.add("show");
+el.classList.add("invalid");
+el.classList.remove("valid");
+
+}
+
+}else{
+
+err.classList.remove("show");
+el.classList.remove("invalid");
+el.classList.add("valid");
+
+}
+
+return ok;
+
+}
+
+
+/* ================= ORDER (customer) ================= */
+
+function openOrder(){
+
+if(!cart.length){
+
+showToast("error",t("cartEmptyAlert"));
+
+return;
+
+}
+
+hideAll();
+
+document.getElementById("orderPage").style.display="block";
+
+updateLanguage();
+
+}
+
+
+function sendOrder(){
+
+let nameOk=validateName(false);
+let phoneOk=validatePhone(false);
+let addressOk=validateAddress(false);
+
+if(!nameOk || !phoneOk || !addressOk){
+
+showToast("error",t("fillAllFields"));
+
+return;
+
+}
+
+let name=document.getElementById("customerName").value.trim();
+let phone=document.getElementById("customerPhone").value.trim().replace(/[\s-()]/g,"");
+let address=document.getElementById("customerAddress").value.trim();
+
+
+let total=0;
+
+cart.forEach(x=>{
+
+total+=x.price*x.qty;
+
+});
+
+
+let order={
+
+id:Date.now(),
+
+name:name,
+
+phone:phone,
+
+address:address,
+
+items:[...cart],
+
+total:total,
+
+status:"accepted",
+
+date:new Date().toLocaleString(),
+
+seen:false
+
+};
+
+
+orders.push(order);
+
+save();
+
+triggerNewOrderAlert(order);
+
+cart=[];
+
+updateCount();
+
+
+document.getElementById("customerName").value="";
+document.getElementById("customerPhone").value="";
+document.getElementById("customerAddress").value="";
+
+["customerName","customerPhone","customerAddress"].forEach(id=>{
+
+document.getElementById(id).classList.remove("invalid","valid");
+
+});
+
+["nameError","phoneError","addressError"].forEach(id=>{
+
+document.getElementById(id).classList.remove("show");
+
+});
+
+
+showToast("success",t("orderSuccess"));
+
+
+homePage();
+
+}
+
+
+/* ================= ADMIN ================= */
+
+function openAdmin(){
+
+hideAll();
+
+document.getElementById("adminPage").style.display="block";
+
+renderAdmin();
+
+renderAdminCategories();
+
+renderAdminProducts();
+
+renderSelect();
+
+renderOrders();
+
+updateLanguage();
+
+markOrdersSeen();
+
+}
+
+
+function markOrdersSeen(){
+
+let changed=false;
+
+orders.forEach(o=>{
+
+if(!o.seen){
+
+o.seen=true;
+
+changed=true;
+
+}
+
+});
+
+if(changed){
+
+save();
+
+}
+
+updateAdminBadge();
+
+}
+
+
+function updateAdminBadge(){
+
+let count=orders.filter(o=>!o.seen).length;
+
+let badge=document.getElementById("adminBadge");
+
+if(count>0){
+
+badge.style.display="inline-flex";
+
+badge.innerText=count>9 ? "9+" : count;
+
+}else{
+
+badge.style.display="none";
+
+}
+
+}
+
+
+function renderAdmin(){
+
+/* placeholder hook kept for future admin-wide refresh logic */
+
+}
+
+
+function renderSelect(){
+
+let s=document.getElementById("pCategory");
+
+let previous=s.value;
+
+s.innerHTML="";
+
+categories.forEach(c=>{
+
+s.innerHTML+=`
+
+<option value="${c.id}">
+
+${c.icon}
+${currentLanguage==="tk"
+?
+c.name
+:
+(c.nameRu||c.name)}
+
+</option>
+
+`;
+
+});
+
+if(previous){
+
+s.value=previous;
+
+}
+
+}
+
+
+/* --- categories admin --- */
+
+function addCategory(){
+
+let name =
+document.getElementById("catName")
+.value.trim();
+
+let icon =
+document.getElementById("catIcon")
+.value.trim() || "📦";
+
+
+if(!name){
+
+showToast("error",t("catNameRequired"));
+
+return;
+
+}
+
+
+categories.push({
+
+id:"c"+Date.now(),
+
+name:name,
+
+nameRu:name,
+
+icon:icon
+
+});
+
+
+save();
+
+document.getElementById("catName").value="";
+document.getElementById("catIcon").value="";
+
+renderAdminCategories();
+
+renderCategories();
+
+renderSelect();
+
+showToast("success",t("categoryAdded"));
+
+}
+
+
+function renderAdminCategories(){
+
+let box=
+document.getElementById("adminCategories");
+
+box.innerHTML="";
+
+
+categories.forEach(c=>{
+
+let name=
+currentLanguage==="tk"
+?
+c.name
+:
+(c.nameRu||c.name);
+
+box.innerHTML+=`
+
+<div class="admin-product">
+
+<h3>
+${c.icon} ${name}
+</h3>
+
+<button
+class="small"
+onclick="editCategory('${c.id}')">
+
+✏️ ${t("edit")}
+
+</button>
+
+<button
+class="remove"
+onclick="deleteCategory('${c.id}')">
+
+🗑️ ${t("remove")}
+
+</button>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+function editCategory(id){
+
+let c=categories.find(x=>x.id===id);
+
+if(!c)return;
+
+
+let name=prompt(
+currentLanguage==="tk"
+?
+"Türkmençe täze ady:"
+:
+"Новое название (туркменский):",
+c.name
+);
+
+if(name===null){
+
+showToast("error",t("orderCancelledToast"));
+
+return;
+
+}
+
+
+let nameRu=prompt(
+"Rusça ady / Название на русском:",
+c.nameRu||c.name
+);
+
+if(nameRu===null){
+
+showToast("error",t("orderCancelledToast"));
+
+return;
+
+}
+
+
+let icon=prompt(
+"Emoji:",
+c.icon
+);
+
+if(icon===null){
+
+showToast("error",t("orderCancelledToast"));
+
+return;
+
+}
+
+
+c.name=name||c.name;
+
+c.nameRu=nameRu||c.nameRu||c.name;
+
+c.icon=icon||c.icon;
+
+
+save();
+
+renderAdminCategories();
+
+renderCategories();
+
+renderSelect();
+
+showToast("success",t("categoryUpdated"));
+
+}
+
+
+function deleteCategory(id){
+
+let used=products.some(
+p=>p.category===id
+);
+
+if(used){
+
+showToast("error",t("categoryInUse"));
+
+return;
+
+}
+
+
+showConfirm(t("confirmDeleteCategory"),()=>{
+
+categories=
+categories.filter(
+c=>c.id!==id
+);
+
+
+save();
+
+renderAdminCategories();
+
+renderCategories();
+
+renderSelect();
+
+showToast("success",t("categoryDeleted"));
+
+},()=>{
+
+showToast("error",t("orderCancelledToast"));
+
+});
+
+}
+
+
+/* --- products admin --- */
+
+function readImage(e){
+
+let file=e.target.files[0];
+
+if(!file)return;
+
+
+let reader=new FileReader();
+
+
+reader.onload=function(){
+
+imageData=reader.result;
+
+let preview=
+document.getElementById("preview");
+
+preview.src=imageData;
+
+preview.style.display="block";
+
+};
+
+
+reader.readAsDataURL(file);
+
+}
+
+
+function resetProductForm(){
+
+document.getElementById("pName").value="";
+document.getElementById("pNameRu").value="";
+document.getElementById("pPrice").value="";
+document.getElementById("pDescription").value="";
+document.getElementById("pDescriptionRu").value="";
+
+let preview=document.getElementById("preview");
+
+preview.src="";
+preview.style.display="none";
+
+imageData="";
+editingProductId=null;
+
+document.getElementById("addProductBtnText").innerText=t("addProductBtn");
+
+}
+
+
+function addProduct(){
+
+let name=document.getElementById("pName").value.trim();
+let nameRu=document.getElementById("pNameRu").value.trim();
+let price=Number(document.getElementById("pPrice").value);
+let description=document.getElementById("pDescription").value.trim();
+let descriptionRu=document.getElementById("pDescriptionRu").value.trim();
+let category=document.getElementById("pCategory").value;
+
+
+if(!name || !price || price<=0 || !category){
+
+showToast("error",t("productFieldsRequired"));
+
+return;
+
+}
+
+
+if(editingProductId){
+
+let p=products.find(x=>x.id===editingProductId);
+
+if(p){
+
+p.name=name;
+p.nameRu=nameRu||name;
+p.price=price;
+p.description=description;
+p.descriptionRu=descriptionRu||description;
+p.category=category;
+
+if(imageData){
+
+p.image=imageData;
+
+}
+
+}
+
+save();
+
+resetProductForm();
+
+renderAdminProducts();
+
+renderProducts();
+
+showToast("success",t("productUpdated"));
+
+return;
+
+}
+
+
+let newId=
+products.length
+?
+Math.max(...products.map(p=>p.id))+1
+:
+1;
+
+
+products.push({
+
+id:newId,
+
+name:name,
+
+nameRu:nameRu||name,
+
+price:price,
+
+description:description,
+
+descriptionRu:descriptionRu||description,
+
+category:category,
+
+image:imageData
+
+});
+
+
+save();
+
+resetProductForm();
+
+renderAdminProducts();
+
+renderProducts();
+
+showToast("success",t("productAdded"));
+
+}
+
+
+function renderAdminProducts(){
+
+let box=document.getElementById("adminProducts");
+
+box.innerHTML="";
+
+products.forEach(p=>{
+
+let name=
+currentLanguage==="tk"
+?
+p.name
+:
+(p.nameRu||p.name);
+
+let image=p.image
+?
+`<img src="${p.image}">`
+:
+`<div class="no-image">🛍️</div>`;
+
+box.innerHTML+=`
+
+<div class="admin-product">
+
+${image}
+
+<h3>${name}</h3>
+
+<div class="price">${p.price} TMT</div>
+
+<button
+class="small"
+onclick="editProduct(${p.id})">
+
+✏️ ${t("edit")}
+
+</button>
+
+<button
+class="remove"
+onclick="deleteProduct(${p.id})">
+
+🗑️ ${t("remove")}
+
+</button>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+function editProduct(id){
+
+let p=products.find(x=>x.id===id);
+
+if(!p)return;
+
+editingProductId=id;
+
+document.getElementById("pName").value=p.name;
+document.getElementById("pNameRu").value=p.nameRu||"";
+document.getElementById("pPrice").value=p.price;
+document.getElementById("pDescription").value=p.description||"";
+document.getElementById("pDescriptionRu").value=p.descriptionRu||"";
+document.getElementById("pCategory").value=p.category;
+
+let preview=document.getElementById("preview");
+
+if(p.image){
+
+preview.src=p.image;
+preview.style.display="block";
+
+}else{
+
+preview.style.display="none";
+
+}
+
+imageData=p.image||"";
+
+document.getElementById("addProductBtnText").innerText=t("edit");
+
+document.getElementById("pName").scrollIntoView({behavior:"smooth",block:"center"});
+
+}
+
+
+function deleteProduct(id){
+
+showConfirm(t("confirmDeleteProduct"),()=>{
+
+products=products.filter(p=>p.id!==id);
+
+save();
+
+renderAdminProducts();
+
+renderProducts();
+
+if(editingProductId===id){
+
+resetProductForm();
+
+}
+
+showToast("success",t("productDeleted"));
+
+},()=>{
+
+showToast("error",t("orderCancelledToast"));
+
+});
+
+}
+
+
+/* --- orders admin --- */
+
+function statusLabel(status){
+
+if(status==="accepted")return t("statusAccepted");
+if(status==="onway")return t("statusOnWay");
+if(status==="delivered")return t("statusDelivered");
+if(status==="cancelled")return t("statusCancelled");
+
+return status;
+
+}
+
+
+function statusClass(status){
+
+if(status==="accepted")return "status-accepted";
+if(status==="onway")return "status-onway";
+if(status==="delivered")return "status-delivered";
+if(status==="cancelled")return "status-cancelled";
+
+return "";
+
+}
+
+
+function renderOrders(){
+
+let box=document.getElementById("orders");
+
+box.innerHTML="";
+
+if(!orders.length){
+
+box.innerHTML=`<div class="empty">${t("noOrdersYet")}</div>`;
+
+return;
+
+}
+
+
+[...orders].reverse().forEach(o=>{
+
+let itemsList=o.items.map(x=>{
+
+let name=
+currentLanguage==="tk"
+?
+x.name
+:
+(x.nameRu||x.name);
+
+return `${name} × ${x.qty}`;
+
+}).join(", ");
+
+
+let statusButtons=ORDER_STATUSES.map(s=>{
+
+let active=o.status===s ? "current" : "";
+
+return `
+
+<button
+class="status-btn ${active}"
+onclick="setOrderStatus(${o.id},'${s}')">
+
+${statusLabel(s)}
+
+</button>
+
+`;
+
+}).join("");
+
+
+box.innerHTML+=`
+
+<div class="order">
+
+<h3>${t("orderNumber")} #${o.id}</h3>
+
+<p><strong>${t("customerLabel")}:</strong> ${o.name}</p>
+
+<p><strong>${t("phoneLabel")}:</strong> ${o.phone}</p>
+
+<p><strong>${t("addressLabel")}:</strong> ${o.address}</p>
+
+<p><strong>${t("itemsLabel")}:</strong> ${itemsList}</p>
+
+<p><strong>${t("totalLabel")}:</strong> ${o.total} TMT</p>
+
+<p><strong>${t("dateLabel")}:</strong> ${o.date}</p>
+
+<span class="status-badge ${statusClass(o.status)}">
+${statusLabel(o.status)}
+</span>
+
+<div class="status-buttons">
+${statusButtons}
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+function setOrderStatus(id,status){
+
+let o=orders.find(x=>x.id===id);
+
+if(!o)return;
+
+o.status=status;
+
+save();
+
+renderOrders();
+
+if(status==="cancelled"){
+
+showToast("error",statusLabel(status)+" — "+t("statusChanged"));
+
+}else{
+
+showToast("success",statusLabel(status)+" — "+t("statusChanged"));
+
+}
+
+}
+
+
+/* ================= NEW ORDER NOTIFICATION ================= */
+
+let audioCtx=null;
+
+function unlockAudio(){
+
+if(!audioCtx){
+
+try{
+
+audioCtx=new (window.AudioContext || window.webkitAudioContext)();
+
+}catch(e){
+
+audioCtx=null;
+
+}
+
+}
+
+if(audioCtx && audioCtx.state==="suspended"){
+
+audioCtx.resume();
+
+}
+
+}
+
+document.addEventListener("click",unlockAudio,{once:true});
+
+document.addEventListener("touchstart",unlockAudio,{once:true});
+
+
+function playNotificationSound(){
+
+unlockAudio();
+
+if(!audioCtx)return;
+
+let now=audioCtx.currentTime;
+
+/* two-tone chime, similar in spirit to a classic SMS alert */
+
+let notes=[
+
+{freq:1318.51,start:0,dur:0.14},
+{freq:1567.98,start:0.15,dur:0.22}
+
+];
+
+
+notes.forEach(n=>{
+
+let osc=audioCtx.createOscillator();
+
+let gain=audioCtx.createGain();
+
+osc.type="sine";
+
+osc.frequency.value=n.freq;
+
+gain.gain.setValueAtTime(0,now+n.start);
+
+gain.gain.linearRampToValueAtTime(0.35,now+n.start+0.015);
+
+gain.gain.exponentialRampToValueAtTime(0.0001,now+n.start+n.dur);
+
+osc.connect(gain);
+
+gain.connect(audioCtx.destination);
+
+osc.start(now+n.start);
+
+osc.stop(now+n.start+n.dur+0.02);
+
+});
+
+}
+
+
+function showNewOrderBanner(order){
+
+let banner=document.getElementById("newOrderBanner");
+
+document.getElementById("newOrderHeadline").innerText=t("newOrderHeadline");
+
+if(order){
+
+document.getElementById("newOrderDetail").innerText=
+
+order.name+" — "+t("newOrderDetail")+" "+order.total+" TMT";
+
+}else{
+
+document.getElementById("newOrderDetail").innerText="";
+
+}
+
+banner.classList.add("show");
+
+clearTimeout(banner._hideTimer);
+
+banner._hideTimer=setTimeout(()=>{
+
+banner.classList.remove("show");
+
+},5000);
+
+}
+
+
+function dismissBannerAndOpenAdmin(){
+
+document.getElementById("newOrderBanner").classList.remove("show");
+
+openAdmin();
+
+}
+
+
+function triggerNewOrderAlert(order){
+
+playNotificationSound();
+
+showNewOrderBanner(order);
+
+updateAdminBadge();
+
+if(document.getElementById("adminPage").style.display==="block"){
+
+renderOrders();
+
+}
+
+}
+
+
+/* cross-tab: if another tab/device sharing this browser places an order,
+   pick it up here and alert whoever currently has the shop open */
+
+window.addEventListener("storage",e=>{
+
+if(e.key!=="orders")return;
+
+let updated=JSON.parse(e.newValue)||[];
+
+let hadIds=new Set(orders.map(o=>o.id));
+
+let freshOrders=updated.filter(o=>!hadIds.has(o.id));
+
+orders=updated;
+
+updateAdminBadge();
+
+if(document.getElementById("adminPage").style.display==="block"){
+
+renderOrders();
+
+}
+
+if(freshOrders.length){
+
+let newest=freshOrders[freshOrders.length-1];
+
+playNotificationSound();
+
+showNewOrderBanner(newest);
+
+}
+
+});
+
+
+/* ================= TOAST ================= */
+
+function showToast(type,message){
+
+let box=document.getElementById("toastBox");
+
+let toast=document.createElement("div");
+
+toast.className="toast "+type;
+
+let icon=type==="success" ? "✓" : "✕";
+
+toast.innerHTML=`<span class="icon">${icon}</span><span>${message}</span>`;
+
+box.appendChild(toast);
+
+requestAnimationFrame(()=>{
+
+toast.classList.add("show");
+
+});
+
+setTimeout(()=>{
+
+toast.classList.remove("show");
+
+setTimeout(()=>{
+
+toast.remove();
+
+},300);
+
+},2200);
+
+}
+
+
+/* ================= CONFIRM MODAL ================= */
+
+function showConfirm(message,onYes,onNo){
+
+let overlay=document.getElementById("confirmOverlay");
+
+document.getElementById("confirmText").innerText=message;
+
+overlay.classList.add("show");
+
+let yesBtn=document.getElementById("confirmYesBtn");
+let noBtn=document.getElementById("confirmNoBtn");
+
+let cleanup=()=>{
+
+overlay.classList.remove("show");
+
+yesBtn.onclick=null;
+noBtn.onclick=null;
+
+};
+
+yesBtn.onclick=()=>{
+
+cleanup();
+
+if(onYes)onYes();
+
+};
+
+noBtn.onclick=()=>{
+
+cleanup();
+
+if(onNo)onNo();
+
+};
+
+}
+
+
+/* ================= INIT ================= */
+
+homePage();
+updateLanguage();
+renderAdminProducts();
+renderAdminCategories();
+updateAdminBadge();
+
+</script>
+
+</body>
+</html>
