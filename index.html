@@ -2,351 +2,234 @@
 <html lang="tk">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Erteki 🛍️</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Erteki ✨</title>
 
 <style>
 *{box-sizing:border-box}
-
 body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#faf8f1;
-  color:#292929
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:#faf8f1;
+ color:#292929
 }
-
 header{
-  padding:20px 12px;
-  text-align:center;
-  background:linear-gradient(135deg,#fff,#fff4c9,#fff);
-  border-bottom:2px solid #d4af37;
-  box-shadow:0 5px 25px #c9a22730
+ padding:22px 12px;
+ text-align:center;
+ background:linear-gradient(135deg,#fff,#fff4c9,#fff);
+ border-bottom:2px solid #d4af37
 }
-
 .logo{
-  font-size:36px;
-  font-weight:bold;
-  background:linear-gradient(90deg,#765300,#d4af37,#fff0a0,#d4af37,#765300);
-  -webkit-background-clip:text;
-  color:transparent
+ font-size:36px;
+ font-weight:bold;
+ color:#b8860b
 }
-
-.subtitle{
-  color:#777;
-  margin-top:5px;
-  font-size:13px
-}
-
-.top{
-  display:flex;
-  justify-content:center;
-  gap:8px;
-  margin-top:14px
-}
-
+.subtitle{color:#777;font-size:13px;margin-top:5px}
+.top{display:flex;justify-content:center;margin-top:15px}
 button{
-  cursor:pointer
+ cursor:pointer;
+ font-weight:bold
 }
-
-.top button,
-.lang button{
-  padding:9px 13px;
-  border:1px solid #d4af37;
-  border-radius:12px;
-  background:#fff8dc;
-  color:#765700;
-  font-weight:bold
+.top button,.lang button{
+ padding:9px 13px;
+ border:1px solid #d4af37;
+ border-radius:20px;
+ background:#fff8dc;
+ color:#765700
 }
+.lang{margin-top:10px}
+.lang button{font-size:11px;border-radius:9px}
+.lang .active{background:#d4af37;color:white}
 
-.lang{
-  margin-top:10px
+.search{padding:15px 10px}
+input,select{
+ width:100%;
+ padding:12px;
+ margin:5px 0;
+ border:1px solid #d4af37;
+ border-radius:12px;
+ font-size:14px;
+ background:white
 }
-
-.lang button.active{
-  background:#d4af37;
-  color:#fff
-}
-
-.search{
-  padding:15px 10px
-}
-
-.search input,
-.admin input,
-.admin select{
-  width:100%;
-  padding:12px;
-  border:1px solid #d4af37;
-  border-radius:12px;
-  background:white;
-  font-size:14px;
-  margin:5px 0
-}
-
 .title{
-  padding:8px 12px;
-  color:#806000;
-  font-size:19px;
-  font-weight:bold
+ padding:10px 12px;
+ color:#806000;
+ font-size:19px;
+ font-weight:bold
 }
-
 .line{
-  width:40px;
-  height:3px;
-  margin-top:5px;
-  background:#d4af37;
-  border-radius:5px
+ width:40px;height:3px;
+ background:#d4af37;
+ margin-top:5px;
+ border-radius:5px
 }
-
 .categories{
-  display:flex;
-  gap:8px;
-  padding:0 10px 18px;
-  overflow-x:auto
+ display:flex;
+ gap:8px;
+ overflow-x:auto;
+ padding:0 10px 18px
 }
-
 .category{
-  min-width:110px;
-  padding:12px 7px;
-  text-align:center;
-  border:1px solid #d4af37;
-  border-radius:16px;
-  background:linear-gradient(145deg,#fff,#fff5d4);
-  color:#765700;
-  font-weight:bold;
-  font-size:12px
+ min-width:115px;
+ padding:12px 7px;
+ border:1px solid #d4af37;
+ border-radius:16px;
+ background:#fff8dc;
+ color:#765700;
+ text-align:center
 }
-
-.category span{
-  display:block;
-  font-size:25px;
-  margin-bottom:5px
-}
+.category span{display:block;font-size:26px;margin-bottom:5px}
 
 .products{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:8px;
-  padding:0 10px 20px
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:9px;
+ padding:0 10px 20px
 }
-
-.product{
-  background:white;
-  padding:8px;
-  border-radius:12px;
-  border:1px solid #ead9a0;
-  box-shadow:0 3px 10px #0000000d
+.product,.box,.order{
+ background:white;
+ border:1px solid #ead9a0;
+ border-radius:15px;
+ padding:10px;
+ margin-bottom:10px;
+ box-shadow:0 3px 12px #0000000d
 }
-
-.product img,
-.no-image{
-  width:90px;
-  height:90px;
-  object-fit:contain;
-  display:block;
-  margin:auto;
-  border-radius:10px
+.product img{
+ width:100%;
+ height:120px;
+ object-fit:contain;
+ border-radius:10px
 }
-
-.no-image{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#fff8dc;
-  font-size:35px
-}
-
-.product h3{
-  margin:6px 0 3px;
-  font-size:13px
-}
-
-.product p{
-  color:#777;
-  font-size:10px;
-  line-height:1.3
-}
-
+.product h3{font-size:14px;margin:7px 0 4px}
+.product p{font-size:11px;color:#777}
 .price{
-  color:#b8860b;
-  font-size:14px;
-  font-weight:bold
+ color:#b8860b;
+ font-weight:bold;
+ font-size:15px
 }
-
 .gold{
-  width:100%;
-  padding:10px;
-  margin-top:6px;
-  border:0;
-  border-radius:9px;
-  background:linear-gradient(110deg,#765300,#c9a227,#ffe68a,#c9a227,#765300);
-  color:white;
-  font-weight:bold
+ width:100%;
+ padding:11px;
+ border:0;
+ border-radius:10px;
+ margin-top:7px;
+ background:linear-gradient(110deg,#765300,#d4af37,#ffe68a,#d4af37,#765300);
+ color:white
 }
-
-.page,
-.admin{
-  display:none;
-  padding:15px 10px
-}
-
-.box,
-.cart-item,
-.admin-product,
-.order{
-  background:white;
-  padding:14px;
-  margin-bottom:12px;
-  border:1px solid #ead9a0;
-  border-radius:16px
-}
-
+.page{display:none;padding:15px 10px}
 .back{
-  width:100%;
-  padding:11px;
-  border:1px solid #d4af37;
-  border-radius:12px;
-  background:white;
-  color:#765700;
-  font-weight:bold
+ width:100%;
+ padding:11px;
+ margin-top:8px;
+ border:1px solid #d4af37;
+ border-radius:11px;
+ background:white;
+ color:#765700
 }
-
 .qty{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:12px;
-  margin-top:10px
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ gap:15px
 }
-
 .qty button{
-  width:36px;
-  height:36px;
-  border:1px solid #d4af37;
-  border-radius:9px;
-  background:#fff5ce;
-  font-size:18px
+ width:35px;height:35px;
+ border:1px solid #d4af37;
+ border-radius:9px;
+ background:#fff5ce;
+ font-size:18px
 }
-
 .remove{
-  width:100%;
-  padding:9px;
-  margin-top:9px;
-  border:0;
-  border-radius:9px;
-  background:#fff0f0;
-  color:#a33
+ width:100%;
+ padding:9px;
+ margin-top:8px;
+ border:0;
+ border-radius:9px;
+ background:#ffeaea;
+ color:#a33
 }
-
 .total{
-  padding:15px;
-  border-radius:14px;
-  background:#fff3c4;
-  border:1px solid #d4af37;
-  font-size:18px;
-  font-weight:bold;
-  color:#765700;
-  margin-bottom:10px
+ padding:15px;
+ background:#fff3c4;
+ border:1px solid #d4af37;
+ border-radius:14px;
+ font-size:18px;
+ font-weight:bold;
+ color:#765700
 }
-
-.admin-login{
-  max-width:400px;
-  margin:40px auto
-}
-
-.admin-login input{
-  width:100%;
-  padding:13px;
-  border:1px solid #d4af37;
-  border-radius:12px;
-  margin:7px 0
-}
-
-.admin-error{
-  color:#c0392b;
-  text-align:center;
-  font-size:13px;
-  margin:8px
-}
-
+#adminPage{display:none;padding:15px 10px}
 .small{
-  padding:8px 10px;
-  border:1px solid #d4af37;
-  border-radius:9px;
-  background:#fff6d4;
-  color:#765700;
-  margin:3px
+ padding:8px 10px;
+ border:1px solid #d4af37;
+ border-radius:9px;
+ background:#fff6d4;
+ color:#765700
 }
-
 .status{
-  padding:8px;
-  margin-top:8px;
-  border-radius:9px;
-  background:#fff3c4;
-  color:#765700;
-  text-align:center;
-  font-weight:bold
+ padding:8px;
+ border-radius:9px;
+ background:#fff3c4;
+ color:#765700;
+ text-align:center;
+ font-weight:bold;
+ margin-top:8px
 }
-
+.status button{
+ padding:7px;
+ margin:3px;
+ border:1px solid #d4af37;
+ border-radius:8px;
+ background:white
+}
 .empty{
-  text-align:center;
-  padding:30px;
-  background:white;
-  border-radius:15px;
-  color:#888
+ text-align:center;
+ padding:30px;
+ background:white;
+ border-radius:15px;
+ color:#888
 }
-
-@media(min-width:700px){
-  .products{
-    grid-template-columns:repeat(4,1fr);
-  }
+#toast{
+ position:fixed;
+ top:15px;
+ left:50%;
+ transform:translateX(-50%);
+ background:#2e9e4f;
+ color:white;
+ padding:12px 18px;
+ border-radius:12px;
+ display:none;
+ z-index:9999
 }
 </style>
 </head>
 
 <body>
 
+<div id="toast"></div>
+
+<div id="home">
+
 <header>
-
 <div class="logo">Erteki ✨</div>
-
-<div class="subtitle">
+<div class="subtitle" id="subtitle">
 Türkmenistan üçin onlaýn söwda
 </div>
 
 <div class="top">
-
-<button onclick="openCart()">
-🛒 Sebet <span id="count">0</span>
-</button>
-
-<button onclick="openAdminLogin()">
-🔐 Admin
-</button>
-
+<button onclick="openCart()">🛒 <span id="cartText">Sebet</span> (<span id="count">0</span>)</button>
 </div>
 
 <div class="lang">
-
-<button id="tkBtn" onclick="setLanguage('tk')">
-🇹🇲 TKM
-</button>
-
-<button id="ruBtn" onclick="setLanguage('ru')">
-🇷🇺 РУС
-</button>
-
+<button id="tkBtn" onclick="setLang('tk')">🇹🇲 TKM</button>
+<button id="ruBtn" onclick="setLang('ru')">🇷🇺 РУС</button>
+<button onclick="adminLogin()">🔐 Admin</button>
 </div>
-
 </header>
 
-<div id="home">
-
 <div class="search">
-<input
-id="search"
+<input id="search"
 placeholder="🔍 Haryt gözle..."
-oninput="searchProducts()">
+oninput="renderProducts()">
 </div>
 
 <div class="title">
@@ -365,8 +248,8 @@ oninput="searchProducts()">
 
 </div>
 
-<div id="categoryPage" class="page">
 
+<div id="categoryPage" class="page">
 <div class="title">
 <span id="categoryName"></span>
 <div class="line"></div>
@@ -374,18 +257,13 @@ oninput="searchProducts()">
 
 <div id="categoryProducts" class="products"></div>
 
-<button class="back" onclick="homePage()">
-← Yza
-</button>
-
+<button class="back" onclick="homePage()">← Yza</button>
 </div>
+
 
 <div id="cartPage" class="page">
 
-<div class="title">
-🛒 Sebet
-<div class="line"></div>
-</div>
+<div class="title">🛒 Sebet<div class="line"></div></div>
 
 <div id="cartItems"></div>
 
@@ -397,11 +275,9 @@ Jemi: <span id="total">0</span> TMT
 📦 Sargyt et
 </button>
 
-<button class="back" onclick="homePage()">
-← Yza
-</button>
-
+<button class="back" onclick="homePage()">← Yza</button>
 </div>
+
 
 <div id="orderPage" class="page">
 
@@ -413,9 +289,7 @@ Jemi: <span id="total">0</span> TMT
 <div class="box">
 
 <input id="customerName" placeholder="Adyňyz">
-
-<input id="customerPhone" placeholder="Telefon belgiňiz (+993...)">
-
+<input id="customerPhone" placeholder="Telefon (+993XXXXXXXX)">
 <input id="customerAddress" placeholder="Salgyňyz">
 
 <button class="gold" onclick="sendOrder()">
@@ -427,38 +301,10 @@ Jemi: <span id="total">0</span> TMT
 <button class="back" onclick="openCart()">
 ← Sebede dolan
 </button>
-
 </div>
 
-<div id="adminLoginPage" class="page">
 
-<div class="admin-login">
-
-<div class="title">
-🔐 Admin giriş
-<div class="line"></div>
-</div>
-
-<input
-id="adminPassword"
-type="password"
-placeholder="Admin paroly">
-
-<div id="adminError" class="admin-error"></div>
-
-<button class="gold" onclick="checkAdmin()">
-🔓 Giriş
-</button>
-
-<button class="back" onclick="homePage()">
-← Yza
-</button>
-
-</div>
-
-</div>
-
-<div id="adminPage" class="admin">
+<div id="adminPage">
 
 <div class="title">
 🔐 Admin panel
@@ -469,9 +315,9 @@ placeholder="Admin paroly">
 
 <h3>📂 Kategoriýa goş</h3>
 
-<input id="catName" placeholder="Kategoriýanyň ady">
-
-<input id="catIcon" placeholder="Emoji: 🎁">
+<input id="catName" placeholder="Türkmençe kategoriýa">
+<input id="catNameRu" placeholder="Rusça kategoriýa">
+<input id="catIcon" placeholder="Emoji 🎁">
 
 <button class="gold" onclick="addCategory()">
 ➕ Kategoriýa goş
@@ -481,17 +327,20 @@ placeholder="Admin paroly">
 
 <div id="adminCategories"></div>
 
+
 <div class="box">
 
 <h3>➕ Haryt goş</h3>
 
 <input id="pName" placeholder="Harydyň ady">
-
+<input id="pNameRu" placeholder="Rusça ady">
 <input id="pPrice" type="number" placeholder="Bahasy">
-
-<input id="pDescription" placeholder="Düşündiriş">
+<input id="pDesc" placeholder="Türkmençe düşündiriş">
+<input id="pDescRu" placeholder="Rusça düşündiriş">
 
 <select id="pCategory"></select>
+
+<input id="pImage" type="file" accept="image/*">
 
 <button class="gold" onclick="addProduct()">
 ✨ Haryt goş
@@ -507,7 +356,7 @@ placeholder="Admin paroly">
 <div id="adminProducts"></div>
 
 <div class="title">
-📋 Sargytlar
+📋 Gelen sargytlar
 <div class="line"></div>
 </div>
 
@@ -519,346 +368,200 @@ placeholder="Admin paroly">
 
 </div>
 
+
 <script>
 
-const ADMIN_PASSWORD="1972ejemjan";
+const PASSWORD="1972ejemjan";
+
+let lang=localStorage.getItem("lang")||"tk";
 
 let categories=JSON.parse(
-localStorage.getItem("categories")
+ localStorage.getItem("categories")
 )||[
-{id:"gift",name:"Sowgatlar",nameRu:"Подарки",icon:"🎁"},
-{id:"beauty",name:"Gözellik we saç",nameRu:"Красота и волосы",icon:"💇‍♀️"},
-{id:"home",name:"Öý üçin harytlar",nameRu:"Товары для дома",icon:"🏠"}
+ {id:"gift",name:"Sowgatlar",nameRu:"Подарки",icon:"🎁"},
+ {id:"beauty",name:"Gözellik we saç",nameRu:"Красота и волосы",icon:"💇‍♀️"},
+ {id:"home",name:"Öý üçin",nameRu:"Для дома",icon:"🏠"}
 ];
 
 let products=JSON.parse(
-localStorage.getItem("products")
+ localStorage.getItem("products")
 )||[
-{
-id:1,
-name:"Teddy Mişka 30sm",
-nameRu:"Мишка Тедди 30см",
-price:110,
-description:"Sowgat üçin owadan mişka 🧸",
-descriptionRu:"Красивая игрушка 🧸",
-category:"gift",
-image:""
-},
-{
-id:2,
-name:"Owadan Suwenir",
-nameRu:"Красивый сувенир",
-price:65,
-description:"Ajaýyp sowgatlyk suwenir ✨",
-descriptionRu:"Красивый сувенир ✨",
-category:"gift",
-image:""
-},
-{
-id:3,
-name:"Gije çyrasy Aý",
-nameRu:"Ночник Луна",
-price:90,
-description:"Aý şekilli gije çyrasy 🌙",
-descriptionRu:"Красивая лунная лампа 🌙",
-category:"gift",
-image:""
-},
-{
-id:4,
-name:"Saç üçin styler",
-nameRu:"Стайлер для волос",
-price:250,
-description:"Saç üçin amatly",
-descriptionRu:"Удобный стайлер",
-category:"beauty",
-image:""
-},
-{
-id:5,
-name:"Fen-darak",
-nameRu:"Фен-расчёска",
-price:180,
-description:"Saç düzmek üçin",
-descriptionRu:"Для укладки волос",
-category:"beauty",
-image:""
-},
-{
-id:6,
-name:"Termos",
-nameRu:"Термос",
-price:150,
-description:"Gündelik ulanmak üçin",
-descriptionRu:"Для ежедневного использования",
-category:"home",
-image:""
-}
+ {
+ id:1,
+ name:"Teddy Mişka 30sm",
+ nameRu:"Мишка Тедди 30см",
+ price:110,
+ desc:"Sowgat üçin owadan mişka 🧸",
+ descRu:"Красивая игрушка для подарка 🧸",
+ category:"gift",
+ image:""
+ },
+ {
+ id:2,
+ name:"Owadan Suwenir",
+ nameRu:"Красивый сувенир",
+ price:65,
+ desc:"Ajaýyp sowgatlyk suwenir ✨",
+ descRu:"Красивый сувенир ✨",
+ category:"gift",
+ image:""
+ },
+ {
+ id:3,
+ name:"Gije çyrasy Aý",
+ nameRu:"Ночник Луна",
+ price:90,
+ desc:"Aý şekilli gije çyrasy 🌙",
+ descRu:"Красивый ночник 🌙",
+ category:"gift",
+ image:""
+ }
 ];
 
 let orders=JSON.parse(
-localStorage.getItem("orders")
+ localStorage.getItem("orders")
 )||[];
 
 let cart=[];
-let currentLanguage=
-localStorage.getItem("language")||"tk";
 
 function save(){
-
-localStorage.setItem(
-"categories",
-JSON.stringify(categories)
-);
-
-localStorage.setItem(
-"products",
-JSON.stringify(products)
-);
-
-localStorage.setItem(
-"orders",
-JSON.stringify(orders)
-);
-
+ localStorage.setItem("categories",JSON.stringify(categories));
+ localStorage.setItem("products",JSON.stringify(products));
+ localStorage.setItem("orders",JSON.stringify(orders));
 }
 
-function hideAll(){
-
-document.getElementById("home").style.display="none";
-document.getElementById("categoryPage").style.display="none";
-document.getElementById("cartPage").style.display="none";
-document.getElementById("orderPage").style.display="none";
-document.getElementById("adminLoginPage").style.display="none";
-document.getElementById("adminPage").style.display="none";
-
+function toast(text){
+ let x=document.getElementById("toast");
+ x.innerText=text;
+ x.style.display="block";
+ setTimeout(()=>x.style.display="none",2500);
 }
 
-function homePage(){
+function setLang(x){
+ lang=x;
+ localStorage.setItem("lang",x);
 
-hideAll();
+ document.getElementById("tkBtn")
+ .classList.toggle("active",x==="tk");
 
-document.getElementById("home").style.display="block";
+ document.getElementById("ruBtn")
+ .classList.toggle("active",x==="ru");
 
-renderCategories();
-renderProducts();
+ document.getElementById("subtitle").innerText=
+ x==="tk"
+ ?"Türkmenistan üçin onlaýn söwda"
+ :"Онлайн-магазин для Туркменистана";
 
-}
+ document.getElementById("cartText").innerText=
+ x==="tk"?"Sebet":"Корзина";
 
-function openAdminLogin(){
+ document.getElementById("catTitle").innerText=
+ x==="tk"?"Kategoriýalar":"Категории";
 
-hideAll();
+ document.getElementById("popularTitle").innerText=
+ x==="tk"?"Meşhur harytlar":"Популярные товары";
 
-document.getElementById("adminLoginPage").style.display="block";
+ document.getElementById("search").placeholder=
+ x==="tk"?"🔍 Haryt gözle...":"🔍 Поиск товара...";
 
-document.getElementById("adminPassword").value="";
-
-document.getElementById("adminError").innerText="";
-
-}
-
-function checkAdmin(){
-
-let password=
-document.getElementById("adminPassword").value;
-
-if(password===ADMIN_PASSWORD){
-
-hideAll();
-
-document.getElementById("adminPage").style.display="block";
-
-renderAdmin();
-
-}else{
-
-document.getElementById("adminError").innerText=
-"❌ Parol nädogry";
-
-}
-
+ renderCategories();
+ renderProducts();
+ renderCart();
 }
 
 function renderCategories(){
 
-let box=
-document.getElementById("categories");
+let el=document.getElementById("categories");
 
-box.innerHTML="";
+el.innerHTML=categories.map(c=>`
 
-categories.forEach(c=>{
+<div class="category"
+onclick="openCategory('${c.id}')">
 
-let div=document.createElement("div");
+<span>${c.icon}</span>
 
-div.className="category";
+${lang==="tk"?c.name:c.nameRu}
 
-div.innerHTML=
-`<span>${c.icon}</span>
-${currentLanguage==="ru"?c.nameRu:c.name}`;
+</div>
 
-div.onclick=()=>openCategory(c.id);
+`).join("");
+}
 
-box.appendChild(div);
+function renderProducts(){
+
+let q=document.getElementById("search").value
+.toLowerCase();
+
+let list=products.filter(p=>{
+
+let n=(lang==="tk"?p.name:p.nameRu).toLowerCase();
+
+return n.includes(q);
 
 });
 
-}
-
-function renderProducts(list=products){
-
-let box=
-document.getElementById("products");
-
-box.innerHTML="";
+let el=document.getElementById("products");
 
 if(!list.length){
 
-box.innerHTML=
+el.innerHTML=
 `<div class="empty">Haryt tapylmady</div>`;
 
 return;
-
 }
 
-list.forEach(p=>{
+el.innerHTML=list.map(productCard).join("");
+}
 
-let div=document.createElement("div");
+function productCard(p){
 
-div.className="product";
+let name=lang==="tk"?p.name:p.nameRu;
+let desc=lang==="tk"?p.desc:p.descRu;
 
-let name=
-currentLanguage==="ru"
-?p.nameRu
-:p.name;
+return `
 
-let desc=
-currentLanguage==="ru"
-?p.descriptionRu
-:p.description;
+<div class="product">
 
-div.innerHTML=`
-
-${p.image
-?`<img src="${p.image}">`
-:`<div class="no-image">🛍️</div>`}
+${
+p.image
+?
+`<img src="${p.image}">`
+:
+`<div style="height:120px;display:flex;align-items:center;justify-content:center;font-size:45px">🛍️</div>`
+}
 
 <h3>${name}</h3>
 
 <p>${desc}</p>
 
-<div class="price">
-${p.price} TMT
-</div>
-
-<button class="gold">
-🛒 Sebede goş
-</button>
-`;
-
-div.querySelector("button").onclick=()=>addToCart(p.id);
-
-box.appendChild(div);
-
-});
-
-}
-
-function searchProducts(){
-
-let q=
-document.getElementById("search")
-.value
-.toLowerCase();
-
-renderProducts(
-products.filter(p=>
-p.name.toLowerCase().includes(q)||
-p.nameRu.toLowerCase().includes(q)
-)
-);
-
-}
-
-function openCategory(id){
-
-hideAll();
-
-document.getElementById("categoryPage").style.display="block";
-
-let cat=categories.find(c=>c.id===id);
-
-document.getElementById("categoryName").innerText=
-currentLanguage==="ru"
-?cat.nameRu
-:cat.name;
-
-let list=
-products.filter(p=>p.category===id);
-
-let box=
-document.getElementById("categoryProducts");
-
-box.innerHTML="";
-
-list.forEach(p=>{
-
-let div=document.createElement("div");
-
-div.className="product";
-
-let name=
-currentLanguage==="ru"?p.nameRu:p.name;
-
-div.innerHTML=`
-
-${p.image
-?`<img src="${p.image}">`
-:`<div class="no-image">🛍️</div>`}
-
-<h3>${name}</h3>
-
 <div class="price">${p.price} TMT</div>
 
-<button class="gold">
-🛒 Sebede goş
+<button class="gold"
+onclick="addCart(${p.id})">
+
+🛒 ${lang==="tk"?"Sebede goş":"Добавить"}
+
 </button>
+
+</div>
 `;
-
-div.querySelector("button").onclick=
-()=>addToCart(p.id);
-
-box.appendChild(div);
-
-});
-
 }
 
-function addToCart(id){
+function addCart(id){
 
-let item=cart.find(x=>x.id===id);
+let found=cart.find(x=>x.id===id);
 
-if(item){
+if(found) found.qty++;
+else cart.push({id:id,qty:1});
 
-item.qty++;
-
-}else{
-
-cart.push({
-id:id,
-qty:1
-});
-
+updateCount();
+toast(lang==="tk"?"Sebede goşuldy ✓":"Добавлено в корзину ✓");
 }
 
-updateCartCount();
-
-}
-
-function updateCartCount(){
+function updateCount(){
 
 document.getElementById("count").innerText=
-cart.reduce((sum,x)=>sum+x.qty,0);
-
+cart.reduce((a,b)=>a+b.qty,0);
 }
 
 function openCart(){
@@ -868,164 +571,145 @@ hideAll();
 document.getElementById("cartPage").style.display="block";
 
 renderCart();
-
 }
 
 function renderCart(){
 
-let box=
-document.getElementById("cartItems");
-
-box.innerHTML="";
+let el=document.getElementById("cartItems");
 
 if(!cart.length){
 
-box.innerHTML=
-`<div class="empty">🛒<br><br>Sebet boş</div>`;
+el.innerHTML=
+`<div class="empty">🛒<br><br>
+${lang==="tk"?"Sebet boş":"Корзина пуста"}
+</div>`;
 
-document.getElementById("total").innerText="0";
-
+document.getElementById("total").innerText=0;
 return;
-
 }
 
 let total=0;
 
-cart.forEach(item=>{
+el.innerHTML=cart.map(item=>{
 
 let p=products.find(x=>x.id===item.id);
 
-if(!p)return;
+if(!p)return"";
 
 total+=p.price*item.qty;
 
-let div=document.createElement("div");
+return `
 
-div.className="cart-item";
+<div class="box">
 
-div.innerHTML=`
+<b>${lang==="tk"?p.name:p.nameRu}</b>
 
-<strong>
-${currentLanguage==="ru"?p.nameRu:p.name}
-</strong>
-
-<div>
-${p.price} TMT
-</div>
+<div>${p.price} TMT</div>
 
 <div class="qty">
 
-<button>-</button>
+<button onclick="changeQty(${p.id},-1)">−</button>
 
 <span>${item.qty}</span>
 
-<button>+</button>
+<button onclick="changeQty(${p.id},1)">+</button>
 
 </div>
 
-<button class="remove">
-Aýyr
+<button class="remove"
+onclick="removeCart(${p.id})">
+
+${lang==="tk"?"Aýyr":"Удалить"}
+
 </button>
+
+</div>
+
 `;
 
-let buttons=div.querySelectorAll(".qty button");
-
-buttons[0].onclick=()=>{
-item.qty--;
-
-if(item.qty<=0){
-
-cart=cart.filter(x=>x.id!==item.id);
-
-}
-
-renderCart();
-updateCartCount();
-
-};
-
-buttons[1].onclick=()=>{
-item.qty++;
-renderCart();
-updateCartCount();
-};
-
-div.querySelector(".remove").onclick=()=>{
-
-cart=cart.filter(x=>x.id!==item.id);
-
-renderCart();
-updateCartCount();
-
-};
-
-box.appendChild(div);
-
-});
+}).join("");
 
 document.getElementById("total").innerText=total;
+}
 
+function changeQty(id,n){
+
+let x=cart.find(a=>a.id===id);
+
+if(!x)return;
+
+x.qty+=n;
+
+if(x.qty<=0)
+cart=cart.filter(a=>a.id!==id);
+
+updateCount();
+renderCart();
+}
+
+function removeCart(id){
+
+cart=cart.filter(a=>a.id!==id);
+
+updateCount();
+renderCart();
 }
 
 function openOrder(){
 
 if(!cart.length){
 
-alert("Sebet boş 🛒");
+toast(lang==="tk"?
+"Sebet boş 🛒":
+"Корзина пуста 🛒");
 
 return;
-
 }
 
 hideAll();
 
-document.getElementById("orderPage").style.display="block";
-
+document.getElementById("orderPage")
+.style.display="block";
 }
 
 function sendOrder(){
 
-let name=
-document.getElementById("customerName").value.trim();
-
-let phone=
-document.getElementById("customerPhone").value.trim();
-
-let address=
-document.getElementById("customerAddress").value.trim();
+let name=document.getElementById("customerName").value.trim();
+let phone=document.getElementById("customerPhone").value.trim();
+let address=document.getElementById("customerAddress").value.trim();
 
 if(!name||!phone||!address){
 
-alert("Ähli maglumatlary dolduryň.");
+toast(lang==="tk"?
+"Ähli maglumatlary dolduryň":
+"Заполните все поля");
 
 return;
-
 }
 
-let total=0;
+let items=cart.map(x=>{
 
-let items=cart.map(item=>{
-
-let p=products.find(x=>x.id===item.id);
-
-total+=p.price*item.qty;
+let p=products.find(a=>a.id===x.id);
 
 return{
-name:p.name,
-qty:item.qty,
-price:p.price
+ name:p.name,
+ nameRu:p.nameRu,
+ price:p.price,
+ qty:x.qty
 };
 
 });
+
+let total=items.reduce(
+(a,b)=>a+b.price*b.qty,0
+);
 
 orders.unshift({
 
 id:Date.now(),
 
-customer:name,
-
+name:name,
 phone:phone,
-
 address:address,
 
 items:items,
@@ -1043,33 +727,63 @@ seen:false
 save();
 
 cart=[];
-
-updateCartCount();
+updateCount();
 
 document.getElementById("customerName").value="";
 document.getElementById("customerPhone").value="";
 document.getElementById("customerAddress").value="";
 
-alert("✅ Sargydyňyz kabul edildi!");
+toast(lang==="tk"?
+"Sargydyňyz üstünlikli kabul edildi! ✓":
+"Ваш заказ успешно принят! ✓");
 
-homePage();
+setTimeout(homePage,800);
+}
 
+function adminLogin(){
+
+let password=prompt(
+lang==="tk"?
+"Admin parolyny giriziň:":
+"Введите пароль администратора:"
+);
+
+if(password===PASSWORD){
+
+hideAll();
+
+document.getElementById("adminPage")
+.style.display="block";
+
+renderAdmin();
+
+}else if(password!==null){
+
+toast(lang==="tk"?
+"Parol nädogry!":
+"Неверный пароль!");
+
+}
+}
+
+function renderAdmin(){
+
+renderAdminCategories();
+renderAdminProducts();
+renderSelect();
+renderOrders();
 }
 
 function addCategory(){
 
-let name=
-document.getElementById("catName").value.trim();
-
-let icon=
-document.getElementById("catIcon").value.trim()||"📦";
+let name=document.getElementById("catName").value.trim();
+let nameRu=document.getElementById("catNameRu").value.trim();
+let icon=document.getElementById("catIcon").value.trim()||"📦";
 
 if(!name){
 
-alert("Kategoriýanyň adyny ýazyň.");
-
+toast("Kategoriýanyň adyny ýazyň");
 return;
-
 }
 
 categories.push({
@@ -1078,7 +792,7 @@ id:"cat_"+Date.now(),
 
 name:name,
 
-nameRu:name,
+nameRu:nameRu||name,
 
 icon:icon
 
@@ -1087,281 +801,343 @@ icon:icon
 save();
 
 document.getElementById("catName").value="";
+document.getElementById("catNameRu").value="";
 document.getElementById("catIcon").value="";
 
 renderAdmin();
+renderCategories();
 
+toast("Kategoriýa goşuldy ✓");
+}
+
+function renderAdminCategories(){
+
+document.getElementById("adminCategories").innerHTML=
+categories.map(c=>`
+
+<div class="box">
+
+<b>${c.icon} ${c.name}</b>
+
+<br>
+
+<button class="small"
+onclick="deleteCategory('${c.id}')">
+
+🗑️ Aýyr
+
+</button>
+
+</div>
+
+`).join("");
+}
+
+function deleteCategory(id){
+
+if(products.some(p=>p.category===id)){
+
+toast("Bu kategoriýada haryt bar");
+return;
+}
+
+categories=categories.filter(c=>c.id!==id);
+
+save();
+renderAdmin();
+renderCategories();
+
+toast("Kategoriýa aýryldy ✓");
+}
+
+function renderSelect(){
+
+document.getElementById("pCategory").innerHTML=
+categories.map(c=>
+`<option value="${c.id}">
+${c.name}
+</option>`
+).join("");
 }
 
 function addProduct(){
 
-let name=
-document.getElementById("pName").value.trim();
-
-let price=
-Number(document.getElementById("pPrice").value);
-
-let description=
-document.getElementById("pDescription").value.trim();
-
-let category=
-document.getElementById("pCategory").value;
+let name=document.getElementById("pName").value.trim();
+let nameRu=document.getElementById("pNameRu").value.trim();
+let price=Number(document.getElementById("pPrice").value);
+let desc=document.getElementById("pDesc").value.trim();
+let descRu=document.getElementById("pDescRu").value.trim();
+let category=document.getElementById("pCategory").value;
+let file=document.getElementById("pImage").files[0];
 
 if(!name||!price||!category){
 
-alert("Harydyň maglumatlaryny dolduryň.");
-
+toast("Harydyň maglumatlaryny dolduryň");
 return;
-
 }
 
-products.push({
+let product={
 
 id:Date.now(),
 
 name:name,
 
-nameRu:name,
+nameRu:nameRu||name,
 
 price:price,
 
-description:description,
+desc:desc,
 
-descriptionRu:description,
+descRu:descRu||desc,
 
 category:category,
 
 image:""
 
-});
+};
+
+if(file){
+
+let reader=new FileReader();
+
+reader.onload=function(){
+
+product.image=reader.result;
+
+products.push(product);
 
 save();
-
-document.getElementById("pName").value="";
-document.getElementById("pPrice").value="";
-document.getElementById("pDescription").value="";
-
 renderAdmin();
-
-}
-
-function renderAdmin(){
-
-renderAdminCategories();
-renderSelect();
-renderAdminProducts();
-renderOrders();
-
-}
-
-function renderAdminCategories(){
-
-let box=
-document.getElementById("adminCategories");
-
-box.innerHTML="";
-
-categories.forEach(c=>{
-
-let div=document.createElement("div");
-
-div.className="admin-product";
-
-div.innerHTML=`
-
-<strong>
-${c.icon} ${c.name}
-</strong>
-
-<br>
-
-<button class="small">
-❌ Aýyr
-</button>
-`;
-
-div.querySelector("button").onclick=()=>{
-
-if(products.some(p=>p.category===c.id)){
-
-alert("Bu kategoriýada haryt bar.");
-
-return;
-
-}
-
-categories=
-categories.filter(x=>x.id!==c.id);
-
-save();
-
-renderAdmin();
+renderProducts();
 
 };
 
-box.appendChild(div);
+reader.readAsDataURL(file);
 
-});
+}else{
 
+products.push(product);
+
+save();
+renderAdmin();
+renderProducts();
 }
 
-function renderSelect(){
+document.getElementById("pName").value="";
+document.getElementById("pNameRu").value="";
+document.getElementById("pPrice").value="";
+document.getElementById("pDesc").value="";
+document.getElementById("pDescRu").value="";
+document.getElementById("pImage").value="";
 
-let select=
-document.getElementById("pCategory");
-
-select.innerHTML="";
-
-categories.forEach(c=>{
-
-let option=document.createElement("option");
-
-option.value=c.id;
-
-option.textContent=
-c.icon+" "+
-(currentLanguage==="ru"?c.nameRu:c.name);
-
-select.appendChild(option);
-
-});
-
+toast("Haryt goşuldy ✓");
 }
 
 function renderAdminProducts(){
 
-let box=
-document.getElementById("adminProducts");
+document.getElementById("adminProducts").innerHTML=
+products.map(p=>`
 
-box.innerHTML="";
+<div class="box">
 
-products.forEach(p=>{
-
-let div=document.createElement("div");
-
-div.className="admin-product";
-
-div.innerHTML=`
-
-<strong>${p.name}</strong>
+<b>${p.name}</b>
 
 <div>${p.price} TMT</div>
 
-<div>${p.description||""}</div>
+<button class="small"
+onclick="deleteProduct(${p.id})">
 
-<button class="small">
-❌ Aýyr
+🗑️ Aýyr
+
 </button>
-`;
 
-div.querySelector("button").onclick=()=>{
+</div>
 
-if(confirm("Harydy aýyrmalymy?")){
-
-products=
-products.filter(x=>x.id!==p.id);
-
-save();
-
-renderAdmin();
-
+`).join("");
 }
 
-};
+function deleteProduct(id){
 
-box.appendChild(div);
+if(!confirm("Harydy aýyrmalymy?"))
+return;
 
-});
+products=products.filter(p=>p.id!==id);
 
+save();
+renderAdmin();
+renderProducts();
+
+toast("Haryt aýryldy ✓");
 }
 
 function renderOrders(){
 
-let box=
-document.getElementById("orders");
-
-box.innerHTML="";
+let el=document.getElementById("orders");
 
 if(!orders.length){
 
-box.innerHTML=
-`<div class="empty">Häzirlikçe sargyt ýok.</div>`;
+el.innerHTML=
+`<div class="empty">
+Häzirlikçe sargyt ýok.
+</div>`;
 
 return;
-
 }
 
-orders.forEach(o=>{
+el.innerHTML=orders.map(o=>`
 
-let div=document.createElement("div");
+<div class="order">
 
-div.className="order";
+<b>📦 Sargyt #${String(o.id).slice(-6)}</b>
 
-let items=o.items.map(i=>
-`${i.name} × ${i.qty}`
-).join("<br>");
+<br><br>
 
-div.innerHTML=`
+<b>Müşderi:</b> ${o.name}
 
-<strong>📦 Sargyt #${o.id}</strong>
+<br>
 
-<p>
-👤 ${o.customer}<br>
-📞 ${o.phone}<br>
-📍 ${o.address}
-</p>
+<b>Telefon:</b> ${o.phone}
 
-<div>
-${items}
-</div>
+<br>
 
-<div class="price">
-Jemi: ${o.total} TMT
-</div>
+<b>Salgy:</b> ${o.address}
+
+<br><br>
+
+<b>Harytlar:</b>
+
+${o.items.map(i=>
+`<div>${i.name} × ${i.qty}</div>`
+).join("")}
+
+<br>
+
+<b>Jemi:</b> ${o.total} TMT
 
 <div class="status">
-${o.status}
+
+${statusText(o.status)}
+
+<br>
+
+<button onclick="changeStatus(${o.id},'accepted')">
+Kabul edildi
+</button>
+
+<button onclick="changeStatus(${o.id},'onway')">
+Ýolda
+</button>
+
+<button onclick="changeStatus(${o.id},'delivered')">
+Gowşuryldy
+</button>
+
+<button onclick="changeStatus(${o.id},'cancelled')">
+Ýatyryldy
+</button>
+
 </div>
 
-`;
+<br>
 
-box.appendChild(div);
+<small>${o.date}</small>
 
-});
+</div>
+
+`).join("");
+}
+
+function statusText(s){
+
+if(lang==="ru"){
+
+return{
+accepted:"✅ Заказ принят",
+onway:"🚚 В пути",
+delivered:"📦 Доставлен",
+cancelled:"❌ Отменён"
+}[s];
 
 }
 
-function setLanguage(lang){
+return{
+accepted:"✅ Sargyt kabul edildi",
+onway:"🚚 Ýolda",
+delivered:"📦 Gowşuryldy",
+cancelled:"❌ Ýatyryldy"
+}[s];
+}
 
-currentLanguage=lang;
+function changeStatus(id,status){
 
-localStorage.setItem("language",lang);
+let o=orders.find(x=>x.id===id);
 
-document.getElementById("tkBtn")
-.classList.toggle("active",lang==="tk");
+if(!o)return;
 
-document.getElementById("ruBtn")
-.classList.toggle("active",lang==="ru");
+o.status=status;
 
-document.getElementById("catTitle").innerText=
-lang==="ru"?"Категории":"Kategoriýalar";
+save();
+renderOrders();
 
-document.getElementById("popularTitle").innerText=
-lang==="ru"?"Популярные товары":"Meşhur harytlar";
+toast(
+lang==="tk"?
+"Sargydyň ýagdaýy üýtgedildi ✓":
+"Статус заказа изменён ✓"
+);
+}
 
-document.getElementById("search").placeholder=
-lang==="ru"
-?"🔍 Поиск товара..."
-:"🔍 Haryt gözle...";
+function openCategory(id){
+
+let c=categories.find(x=>x.id===id);
+
+if(!c)return;
+
+hideAll();
+
+document.getElementById("categoryPage")
+.style.display="block";
+
+document.getElementById("categoryName")
+.innerText=
+lang==="tk"?c.name:c.nameRu;
+
+let list=products.filter(
+p=>p.category===id
+);
+
+document.getElementById("categoryProducts")
+.innerHTML=list.length?
+list.map(productCard).join("")
+:
+`<div class="empty">
+${lang==="tk"?
+"Bu kategoriýada haryt ýok":
+"В этой категории пока нет товаров"}
+</div>`;
+}
+
+function homePage(){
+
+hideAll();
+
+document.getElementById("home")
+.style.display="block";
 
 renderCategories();
 renderProducts();
-
 }
 
-homePage();
+function hideAll(){
 
-setLanguage(currentLanguage);
+document.getElementById("home").style.display="none";
+document.getElementById("categoryPage").style.display="none";
+document.getElementById("cartPage").style.display="none";
+document.getElementById("orderPage").style.display="none";
+document.getElementById("adminPage").style.display="none";
+}
+
+setLang(lang);
+updateCount();
 
 </script>
 
