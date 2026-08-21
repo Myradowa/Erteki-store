@@ -1190,7 +1190,114 @@ function toast(message){
    PRODUCTS
 ========================= */
 
-function renderProducts(){
+function renderProducts()
+/* =========================
+   CART
+========================= */
+
+function addToCart(productId){
+
+  const product = products.find(
+    p => p.id === productId
+  );
+
+  if(!product) return;
+
+  const existing = cart.find(
+    item => item.id === productId
+  );
+
+  if(existing){
+    existing.quantity++;
+  }else{
+    cart.push({
+      ...product,
+      quantity:1
+    });
+  }
+
+  toast(tr("added"));
+
+  renderCart();
+}
+
+
+function removeFromCart(productId){
+
+  cart = cart.filter(
+    item => item.id !== productId
+  );
+
+  renderCart();
+}
+
+
+function renderCart(){
+
+  const container =
+    document.getElementById("cart");
+
+  if(!container) return;
+
+  if(cart.length === 0){
+
+    container.innerHTML =
+      `<p>${tr("emptyCart")}</p>`;
+
+    return;
+  }
+
+  let total = 0;
+
+  container.innerHTML = "";
+
+  cart.forEach(item => {
+
+    const name =
+      currentLanguage === "ru"
+        ? item.nameRu
+        : item.name;
+
+    total +=
+      Number(item.price) *
+      Number(item.quantity);
+
+    const div =
+      document.createElement("div");
+
+    div.className = "cart-item";
+
+    div.innerHTML = `
+      <span>
+        ${name} × ${item.quantity}
+      </span>
+
+      <strong>
+        ${item.price * item.quantity} TMT
+      </strong>
+
+      <button onclick="removeFromCart(${item.id})">
+        ✕
+      </button>
+    `;
+
+    container.appendChild(div);
+  });
+
+  const totalDiv =
+    document.createElement("div");
+
+  totalDiv.className = "cart-total";
+
+  totalDiv.innerHTML = `
+    <strong>
+      ${tr("total")} ${total} TMT
+    </strong>
+  `;
+
+  container.appendChild(totalDiv);
+}
+  {
 
   const container =
     document.getElementById("products");
@@ -1238,3 +1345,11 @@ function renderProducts(){
     container.appendChild(card);
   });
 }
+/* =========================
+   INIT
+========================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+  renderProducts();
+  renderCart();
+});
