@@ -1169,4 +1169,20 @@ function saveAll(){
 
 /* =========================
    TOAST
-=========
+========================= */
+
+function toast(message){
+  const old = document.querySelector(".erteki-toast");
+
+  if(old) old.remove();
+
+  const el = document.createElement("div");
+  el.className = "erteki-toast";
+  el.textContent = message;
+
+  document.body.appendChild(el);
+
+  setTimeout(() => {
+    el.remove();
+  }, 2500);
+  }
