@@ -1186,3 +1186,55 @@ function toast(message){
     el.remove();
   }, 2500);
   }
+/* =========================
+   PRODUCTS
+========================= */
+
+function renderProducts(){
+
+  const container =
+    document.getElementById("products");
+
+  if(!container) return;
+
+  container.innerHTML = "";
+
+  products.forEach(product => {
+
+    const name =
+      currentLanguage === "ru"
+        ? product.nameRu
+        : product.name;
+
+    const description =
+      currentLanguage === "ru"
+        ? product.descriptionRu
+        : product.description;
+
+    const card = document.createElement("div");
+
+    card.className = "product-card";
+
+    card.innerHTML = `
+      <div class="product-image">
+        ${
+          product.image
+            ? `<img src="${product.image}" alt="${name}">`
+            : `<span>🛍️</span>`
+        }
+      </div>
+
+      <h3>${name}</h3>
+
+      <p>${description}</p>
+
+      <strong>${product.price} TMT</strong>
+
+      <button onclick="addToCart(${product.id})">
+        ${tr("addCart")}
+      </button>
+    `;
+
+    container.appendChild(card);
+  });
+}
